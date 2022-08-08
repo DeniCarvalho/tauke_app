@@ -22,7 +22,7 @@ class _SplashPageState extends State<SplashPage> {
 
   navigateAfterStart() async {
     await Future.delayed(const Duration(seconds: 2));
-    Get.toNamed('/onboarding/intro');
+    Get.offNamed('/onboarding/intro');
   }
 
   @override

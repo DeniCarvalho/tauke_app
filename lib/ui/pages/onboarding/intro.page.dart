@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import '../../../blocs/blocs.dart';
 import '../../shared/shared.dart';
@@ -14,7 +15,6 @@ class OnboardingIntroPage extends StatelessWidget {
     final bool iphonex = MediaQuery.of(context).size.height >= 812.0;
     final double bottomPadding = iphonex ? 16.0 : 0.0;
 
-    final OnboardingBloc bloc = Provider.of<OnboardingBloc>(context);
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: PreferredSize(
@@ -143,8 +143,15 @@ class OnboardingIntroPage extends StatelessWidget {
                         width: double.infinity,
                         child: ElevatedButton(
                           // style: ButtonCustomStyle.raisedButtonStyle,
-                          onPressed: () {},
-                          child: const Text('Aceitar e continuar'),
+                          onPressed: () {
+                            Get.toNamed('/onboarding/phone');
+                          },
+                          child: const Text(
+                            'Aceitar e continuar',
+                            style: TextStyle(
+                              color: AppColorsDark.secondary,
+                            ),
+                          ),
                         ),
                       ),
                     ],

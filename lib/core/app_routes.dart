@@ -13,6 +13,10 @@ class AppRoutes {
       Router(
         path: '/intro',
         page: (context) => const OnboardingIntroPage(),
+      ),
+      Router(
+        path: '/phone',
+        page: (context) => const OnboardingPhonePage(),
       )
     ],
   );
