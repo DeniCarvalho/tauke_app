@@ -1,0 +1,21 @@
+{
+  "welcome": "Welcome",
+  "email": "E-email",
+  "password": "Password",
+  "signIn": "Sign in",
+  "signInEmail": "Login with your email",
+  "signInFacebook": "Sign in with Facebook",
+  "signInGoogle": "Sign in with Google",
+  "forgotYourPassword": "Forgot your password?",
+  "dontHaveAccount": "Don't have an account?",
+  "haveAccount": "I already have an account",
+  "recoveryPassword": "Recovery password",
+  "recoveryPasswordMsg": "To recover your password, we will send you an email with a recovery link. Enter your registration email.",
+
+  "newEvent": "New event",
+
+  "required": "Required field",
+  "invalidEmail": "Invalid email",
+  "confirm": "Confirm",
+  "back": "To go back"
+}
