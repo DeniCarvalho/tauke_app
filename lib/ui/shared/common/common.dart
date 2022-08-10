@@ -7,3 +7,4 @@ export 'app_images.dart';
 export 'app_videos.dart';
 export 'app_animations.dart';
 export 'styles/styles.dart';
+export 'transitions/transitions.dart';

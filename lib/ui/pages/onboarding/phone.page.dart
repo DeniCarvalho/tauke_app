@@ -88,6 +88,9 @@ class _OnboardingPhonePageState extends State<OnboardingPhonePage> {
                               style: TextStyle(
                                 fontSize: 28.fontSize,
                                 fontWeight: FontWeight.w400,
+                                color: Provider.of<ThemeBloc>(context).isDark()
+                                    ? AppColorsDark.secondary
+                                    : AppColors.secondary,
                               ),
                             ),
                             TextSpan(
@@ -95,6 +98,9 @@ class _OnboardingPhonePageState extends State<OnboardingPhonePage> {
                               style: TextStyle(
                                 fontSize: 28.fontSize,
                                 fontWeight: FontWeight.bold,
+                                color: Provider.of<ThemeBloc>(context).isDark()
+                                    ? AppColorsDark.secondary
+                                    : AppColors.secondary,
                               ),
                             ),
                             TextSpan(
@@ -102,6 +108,9 @@ class _OnboardingPhonePageState extends State<OnboardingPhonePage> {
                               style: TextStyle(
                                 fontSize: 28.fontSize,
                                 fontWeight: FontWeight.w400,
+                                color: Provider.of<ThemeBloc>(context).isDark()
+                                    ? AppColorsDark.secondary
+                                    : AppColors.secondary,
                               ),
                             ),
                           ],

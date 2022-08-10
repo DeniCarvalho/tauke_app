@@ -50,11 +50,12 @@ class _AppWidgetState extends State<AppWidget> {
       child: GetMaterialApp(
         title: "Tauke",
         debugShowCheckedModeBanner: false,
+        defaultTransition: Transition.topLevel,
         theme: AppThemeData.light,
         darkTheme: AppThemeData.dark,
         themeMode: Provider.of<ThemeBloc>(context).mode,
-        initialRoute: AppRoutes.splash.path,
-        routes: AppRoutes().mapRoutes(),
+        initialRoute: AppRoutes.splash.name,
+        getPages: AppRoutes().routes,
         supportedLocales: const [
           Locale('en', 'US'),
           Locale('pt', 'BR'),

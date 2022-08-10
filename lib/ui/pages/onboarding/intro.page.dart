@@ -55,7 +55,7 @@ class OnboardingIntroPage extends StatelessWidget {
                   children: [
                     SvgPicture.asset(
                       AppImages.chat,
-                      height: 180.responsiveHeight,
+                      height: 220.responsiveHeight,
                       fit: BoxFit.contain,
                     ),
                     const SizedBox(
@@ -68,7 +68,7 @@ class OnboardingIntroPage extends StatelessWidget {
                           TextSpan(
                             text: 'Bem-vindo, ',
                             style: TextStyle(
-                              fontSize: 20.fontSize,
+                              fontSize: 22.fontSize,
                               color: Provider.of<ThemeBloc>(context).isDark()
                                   ? AppColorsDark.secondary
                                   : AppColors.secondary,
@@ -77,7 +77,7 @@ class OnboardingIntroPage extends StatelessWidget {
                           TextSpan(
                             text: 'Tauker!',
                             style: TextStyle(
-                              fontSize: 20.fontSize,
+                              fontSize: 22.fontSize,
                               color: Theme.of(context).primaryColor,
                               fontWeight: FontWeight.w700,
                             ),
@@ -90,12 +90,12 @@ class OnboardingIntroPage extends StatelessWidget {
                     ),
                     Padding(
                       padding: EdgeInsets.symmetric(
-                        horizontal: 15.responsiveWidth,
+                        horizontal: 17.responsiveWidth,
                       ),
                       child: Text(
                         'Sua loja favorita ainda mais acessível. Compre e venda sem sair do chat.',
                         style: TextStyle(
-                          fontSize: 16.fontSize,
+                          fontSize: 18.fontSize,
                           fontWeight: FontWeight.w300,
                         ),
                         textAlign: TextAlign.center,
@@ -105,7 +105,7 @@ class OnboardingIntroPage extends StatelessWidget {
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(
-                    horizontal: 35.responsiveWidth,
+                    horizontal: 18.responsiveWidth,
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -119,7 +119,7 @@ class OnboardingIntroPage extends StatelessWidget {
                               text:
                                   'Clique em "Aceitar e continuar" para aceitar os ',
                               style: TextStyle(
-                                fontSize: 12.fontSize,
+                                fontSize: 14.fontSize,
                                 color: Provider.of<ThemeBloc>(context).isDark()
                                     ? AppColors.system
                                     : AppColors.secondary,
@@ -128,7 +128,7 @@ class OnboardingIntroPage extends StatelessWidget {
                             TextSpan(
                               text: 'Termos de uso e Política de Privacidade',
                               style: TextStyle(
-                                fontSize: 12.fontSize,
+                                fontSize: 14.fontSize,
                                 color: Theme.of(context).primaryColor,
                               ),
                               recognizer: TapGestureRecognizer()..onTap = () {},
@@ -142,14 +142,21 @@ class OnboardingIntroPage extends StatelessWidget {
                       SizedBox(
                         width: double.infinity,
                         child: ElevatedButton(
-                          // style: ButtonCustomStyle.raisedButtonStyle,
+                          style: ButtonStyle(
+                            padding: MaterialStateProperty.all(
+                              EdgeInsets.symmetric(
+                                vertical: 15.0.responsiveHeight,
+                              ),
+                            ),
+                          ),
                           onPressed: () {
                             Get.toNamed('/onboarding/phone');
                           },
-                          child: const Text(
+                          child: Text(
                             'Aceitar e continuar',
                             style: TextStyle(
                               color: AppColorsDark.secondary,
+                              fontSize: 16.fontSize,
                             ),
                           ),
                         ),

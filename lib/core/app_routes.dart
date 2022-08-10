@@ -1,49 +1,36 @@
+import 'package:animations/animations.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 
 import '../ui/pages/pages.dart';
+import '../ui/shared/shared.dart';
 
 class AppRoutes {
-  static Router splash = Router(
-    path: '/splash',
-    page: (context) => const SplashPage(),
-  );
-  static Router onboarding = Router(
-    path: '/onboarding',
-    children: [
-      Router(
-        path: '/intro',
-        page: (context) => const OnboardingIntroPage(),
-      ),
-      Router(
-        path: '/phone',
-        page: (context) => const OnboardingPhonePage(),
-      )
-    ],
+  static GetPage splash = GetPage(
+    name: '/splash',
+    page: () => const SplashPage(),
+    customTransition: SharedAxisTransitions(
+      type: SharedAxisTransitionType.scaled,
+    ),
   );
 
-  final List<Router> routes = [splash, onboarding];
+  static GetPage onboardingIntro = GetPage(
+    name: '/onboarding/intro',
+    page: () => const OnboardingIntroPage(),
+    customTransition: SharedAxisTransitions(
+      type: SharedAxisTransitionType.scaled,
+    ),
+  );
+  static GetPage onboardingPhone = GetPage(
+    name: '/onboarding/phone',
+    page: () => const OnboardingPhonePage(),
+    customTransition: SharedAxisTransitions(
+      type: SharedAxisTransitionType.horizontal,
+    ),
+  );
 
-  // static Map<String, Widget Function(BuildContext)> routes = {
-  //   splash.path: splash.page,
-  // };
-
-  Map<String, Widget Function(BuildContext)> mapRoutes() {
-    late Map<String, Widget Function(BuildContext)> values = {};
-    for (var i = 0; i < routes.length; i++) {
-      final route = routes[i];
-      if (route.page != null) {
-        values[route.path] = route.page!;
-      } else if (route.children != null && route.children!.isNotEmpty) {
-        for (var c = 0; c < route.children!.length; c++) {
-          final child = route.children![c];
-          if (child.page != null) {
-            values['${route.path}${child.path}'] = child.page!;
-          }
-        }
-      }
-    }
-    return values;
-  }
+  final List<GetPage> routes = [splash, onboardingIntro, onboardingPhone];
 }
 
 class Router {
