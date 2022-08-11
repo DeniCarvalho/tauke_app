@@ -93,7 +93,7 @@ class OnboardingIntroPage extends StatelessWidget {
                         horizontal: 17.responsiveWidth,
                       ),
                       child: Text(
-                        'Sua loja favorita ainda mais acessível. Compre e venda sem sair do chat.',
+                        'Sua loja favorita ainda mais acessível. Compre ou venda sem sair do chat.',
                         style: TextStyle(
                           fontSize: 18.fontSize,
                           fontWeight: FontWeight.w300,

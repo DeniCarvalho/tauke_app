@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:get/get.dart';
+import 'package:intl_phone_field/countries.dart';
 import 'package:intl_phone_field/country_picker_dialog.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:provider/provider.dart';
@@ -18,11 +19,25 @@ class OnboardingPhonePage extends StatefulWidget {
 
 class _OnboardingPhonePageState extends State<OnboardingPhonePage> {
   final _controller = TextEditingController();
+  String? errorMessage;
+  FocusNode focusInput = FocusNode();
+
+  @override
+  void initState() {
+    super.initState();
+    loadPage();
+  }
 
   @override
   void dispose() {
     _controller.dispose();
     super.dispose();
+  }
+
+  loadPage() async {
+    await Future.delayed(const Duration(milliseconds: 500));
+    // ignore: use_build_context_synchronously
+    FocusScope.of(context).requestFocus(focusInput);
   }
 
   void _submit() {}
@@ -120,6 +135,7 @@ class _OnboardingPhonePageState extends State<OnboardingPhonePage> {
                         height: 20,
                       ),
                       IntlPhoneField(
+                        focusNode: focusInput,
                         pickerDialogStyle: PickerDialogStyle(
                           searchFieldInputDecoration: const InputDecoration(
                             labelText: 'Pesquisar país',
@@ -132,8 +148,33 @@ class _OnboardingPhonePageState extends State<OnboardingPhonePage> {
                           ),
                         ),
                         initialCountryCode: 'BR',
-                        invalidNumberMessage: 'Número inválido',
+                        invalidNumberMessage: errorMessage,
                         controller: _controller,
+                        // autovalidateMode: AutovalidateMode.disabled,
+                        validator: (value) {
+                          if (value!.number.isEmpty) {
+                            setState(() {
+                              errorMessage = 'Informe o número';
+                            });
+                            return '';
+                          } else {
+                            Country country = countries.firstWhere((element) =>
+                                "+${element.dialCode}" == value.countryCode);
+                            if (!(value.number.length == country.maxLength ||
+                                value.number.length > country.minLength &&
+                                    value.number.length < country.maxLength)) {
+                              setState(() {
+                                errorMessage = 'Número inválido';
+                              });
+                              return '';
+                            }
+                          }
+
+                          setState(() {
+                            errorMessage = '';
+                          });
+                          return null;
+                        },
                       ),
                       const SizedBox(
                         height: 20,
@@ -148,7 +189,9 @@ class _OnboardingPhonePageState extends State<OnboardingPhonePage> {
                               ),
                             ),
                           ),
-                          onPressed: _controller.value.text.isNotEmpty
+                          onPressed: _controller.value.text.isNotEmpty &&
+                                  (errorMessage == null ||
+                                      errorMessage!.isEmpty)
                               ? _submit
                               : null,
                           child: Text(
