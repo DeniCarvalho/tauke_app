@@ -34,12 +34,16 @@ class _OnboardingPhonePageState extends State<OnboardingPhonePage> {
   }
 
   loadPage() async {
-    await Future.delayed(const Duration(milliseconds: 500));
-    // ignore: use_build_context_synchronously
-    FocusScope.of(context).requestFocus(focusInput);
+    if (_controller.value.text.isEmpty) {
+      await Future.delayed(const Duration(milliseconds: 500));
+      // ignore: use_build_context_synchronously
+      FocusScope.of(context).requestFocus(focusInput);
+    }
   }
 
-  void _submit() {}
+  void _submit() {
+    Get.toNamed('/onboarding/phone/validate');
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -29,8 +29,14 @@ class AppRoutes {
       type: SharedAxisTransitionType.horizontal,
     ),
   );
-
-  final List<GetPage> routes = [splash, onboardingIntro, onboardingPhone];
+  static GetPage onboardingPhoneValidate = GetPage(
+    name: '/onboarding/phone/validate',
+    page: () => const OnboardingValidatePhonePage(),
+    customTransition: SharedAxisTransitions(
+      type: SharedAxisTransitionType.horizontal,
+    ),
+  );
+  final List<GetPage> routes = [splash, onboardingIntro, onboardingPhone, onboardingPhoneValidate];
 }
 
 class Router {
