@@ -7,7 +7,7 @@ import 'package:platform_device_id/platform_device_id.dart';
 import 'package:provider/provider.dart';
 import 'package:rive/rive.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:tauke_app/models/user.model.dart';
+import 'package:taukeflow/models/user.model.dart';
 import '../../../blocs/blocs.dart';
 import '../../../settings.dart';
 import '../../shared/shared.dart';

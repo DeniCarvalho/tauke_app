@@ -1,4 +1,4 @@
-package io.tauke.app
+package io.taukeflow.app
 
 import io.flutter.embedding.android.FlutterActivity
 

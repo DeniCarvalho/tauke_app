@@ -1,4 +1,4 @@
-name: tauke_app
+name: taukeflow
 description: New chat app for intuitive shopping and sales.
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
 

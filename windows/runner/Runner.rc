@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "tauke_app" "\0"
+            VALUE "FileDescription", "taukeflow" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "tauke_app" "\0"
+            VALUE "InternalName", "taukeflow" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2022 com.example. All rights reserved." "\0"
-            VALUE "OriginalFilename", "tauke_app.exe" "\0"
-            VALUE "ProductName", "tauke_app" "\0"
+            VALUE "OriginalFilename", "taukeflow.exe" "\0"
+            VALUE "ProductName", "taukeflow" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

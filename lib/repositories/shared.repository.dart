@@ -1,5 +1,5 @@
 import 'package:encrypt/encrypt.dart';
-import 'package:tauke_app/settings.dart';
+import 'package:taukeflow/settings.dart';
 
 import '../models/models.dart';
 

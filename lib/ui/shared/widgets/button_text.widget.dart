@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tauke_app/ui/shared/shared.dart';
+import 'package:taukeflow/ui/shared/shared.dart';
 
 class ButtonText extends StatelessWidget {
   final String text;

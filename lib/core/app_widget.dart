@@ -48,7 +48,7 @@ class _AppWidgetState extends State<AppWidget> {
         }
       },
       child: GetMaterialApp(
-        title: "Tauke",
+        title: "Tauke Flow",
         debugShowCheckedModeBanner: false,
         defaultTransition: Transition.topLevel,
         theme: AppThemeData.light,
