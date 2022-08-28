@@ -17,7 +17,7 @@ class OnboardingIntroPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Padding(
-            padding:  EdgeInsets.only(top: 20.0.responsiveHeight),
+            padding: EdgeInsets.only(top: 20.0.responsiveHeight),
             child: Logo(
               height: 50.fontSize,
               path: Provider.of<ThemeBloc>(context).isDark()
@@ -115,27 +115,11 @@ class OnboardingIntroPage extends StatelessWidget {
                 const SizedBox(
                   height: 12,
                 ),
-                SizedBox(
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    style: ButtonStyle(
-                      padding: MaterialStateProperty.all(
-                        EdgeInsets.symmetric(
-                          vertical: 15.0.responsiveHeight,
-                        ),
-                      ),
-                    ),
-                    onPressed: () {
-                      Get.toNamed('/onboarding/phone');
-                    },
-                    child: Text(
-                      'Aceitar e continuar',
-                      style: TextStyle(
-                        color: AppColorsDark.secondary,
-                        fontSize: 16.fontSize,
-                      ),
-                    ),
-                  ),
+                ButtonDefault(
+                  text: 'Aceitar e continuar',
+                  onPressed: () {
+                    Get.toNamed('/onboarding/phone');
+                  },
                 ),
               ],
             ),

@@ -157,18 +157,8 @@ class _OnboardingValidatePhonePageState
                 const SizedBox(
                   height: 20,
                 ),
-                SizedBox(
-                  width: double.infinity,
-                  child: TextButton(
-                    onPressed: null,
-                    child: Text(
-                      'Reenviar código',
-                      style: TextStyle(
-                        color: Theme.of(context).primaryColor,
-                        fontSize: 16.fontSize,
-                      ),
-                    ),
-                  ),
+                const ButtonText(
+                  text: 'Reenviar código',
                 ),
               ],
             ),

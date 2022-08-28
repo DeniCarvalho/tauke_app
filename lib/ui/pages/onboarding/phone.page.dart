@@ -17,6 +17,7 @@ class OnboardingPhonePage extends StatefulWidget {
 }
 
 class _OnboardingPhonePageState extends State<OnboardingPhonePage> {
+  late OnboardingBloc bloc;
   final _controller = TextEditingController();
   String? errorMessage;
   FocusNode focusInput = FocusNode();
@@ -41,12 +42,10 @@ class _OnboardingPhonePageState extends State<OnboardingPhonePage> {
     }
   }
 
-  void _submit() {
-    Get.toNamed('/onboarding/phone/validate');
-  }
-
   @override
   Widget build(BuildContext context) {
+    bloc = Provider.of<OnboardingBloc>(context);
+
     return BodyAdaptive(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -156,28 +155,13 @@ class _OnboardingPhonePageState extends State<OnboardingPhonePage> {
                 const SizedBox(
                   height: 20,
                 ),
-                SizedBox(
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    style: ButtonStyle(
-                      padding: MaterialStateProperty.all(
-                        EdgeInsets.symmetric(
-                          vertical: 15.0.responsiveHeight,
-                        ),
-                      ),
-                    ),
-                    onPressed: _controller.value.text.isNotEmpty &&
-                            (errorMessage == null || errorMessage!.isEmpty)
-                        ? _submit
-                        : null,
-                    child: Text(
-                      'CONTINUAR',
-                      style: TextStyle(
-                        color: AppColorsDark.secondary,
-                        fontSize: 16.fontSize,
-                      ),
-                    ),
-                  ),
+                ButtonDefault(
+                  text: 'CONTINUAR',
+                  loading: bloc.loading,
+                  onPressed: _controller.value.text.isNotEmpty &&
+                          (errorMessage == null || errorMessage!.isEmpty)
+                      ? bloc.sendCode
+                      : null,
                 ),
               ],
             ),

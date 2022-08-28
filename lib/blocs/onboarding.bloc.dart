@@ -1,4 +1,5 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../models/models.dart';
 import '../repositories/shared.repository.dart';
 import '../repositories/user.repository.dart';
@@ -7,24 +8,25 @@ class OnboardingBloc extends ChangeNotifier {
   final sharedRepository = SharedRepository();
   final userRepository = UserRepository();
 
-  late List<CountryModel> countries;
-  late CountryModel selectedCountry = CountryModel(
-    name: "Brasil",
-    code: "BR",
-    ddi: "+55",
-  );
+  late bool loading = false;
+  late String codeSms = '';
 
-  OnboardingBloc() {
-    getCountries();
+  sendCode() async {
+    try {
+      loading = true;
+      notifyListeners();
+      await sharedRepository.sendCodeSMS();
+      await Get.toNamed('/onboarding/phone/validate');
+    } on FailureModel catch (e) {
+      e.showMessage();
+    } finally {
+      loading = false;
+      notifyListeners();
+    }
   }
 
-  getCountries() async {
-    countries = await sharedRepository.getAllCountries();
-    notifyListeners();
-  }
-
-  changeCountry(CountryModel country) {
-    selectedCountry = country;
+  validateCode(String code) {
+    codeSms = code;
     notifyListeners();
   }
 }
