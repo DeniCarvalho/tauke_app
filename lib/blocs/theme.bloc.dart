@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../core/firebase/firebase.dart';
 import '../settings.dart';
 
 class ThemeBloc extends ChangeNotifier {
@@ -39,6 +40,10 @@ class ThemeBloc extends ChangeNotifier {
 
   saveThemeMode(String mode) async {
     final prefs = await SharedPreferences.getInstance();
-    await prefs.setString(Settings.themeLocalName, mode);
+    final value = RemoteConfigCustom().getValueOrDefault(
+      key: 'themeLocalName',
+      defaultValue: Settings.themeLocalName,
+    );
+    await prefs.setString(value, mode);
   }
 }

@@ -4,10 +4,16 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../blocs/blocs.dart';
 import '../settings.dart';
 import 'app_widget.dart';
+import 'firebase/remote_config/remote_config_custom.dart';
 
 Future<void> runBaseApp() async {
   final prefs = await SharedPreferences.getInstance();
-  String? modeSave = prefs.getString(Settings.themeLocalName);
+  final valueThemeLocalName = RemoteConfigCustom().getValueOrDefault(
+    key: 'themeLocalName',
+    defaultValue: Settings.themeLocalName,
+  );
+  String? modeSave = prefs.getString(valueThemeLocalName);
+  
   ThemeMode mode = modeSave == 'dark'
       ? ThemeMode.dark
       : modeSave == 'light'

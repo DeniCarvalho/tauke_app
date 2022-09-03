@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import 'core/app_main.dart';
-import 'core/firebase/messaging/messaging_custom.dart';
+import 'core/firebase/firebase.dart';
 
 class MyHttpOverrides extends HttpOverrides {
   @override
@@ -21,6 +21,9 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await Firebase.initializeApp();
+
+  await RemoteConfigCustom().initialize();
+
   await MessagingCustom().initialize();
   await MessagingCustom().getTokenFirebase();
 

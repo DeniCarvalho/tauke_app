@@ -9,6 +9,7 @@ import 'package:rive/rive.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:taukeflow/models/user.model.dart';
 import '../../../blocs/blocs.dart';
+import '../../../core/firebase/firebase.dart';
 import '../../../settings.dart';
 import '../../shared/shared.dart';
 
@@ -30,7 +31,12 @@ class _SplashPageState extends State<SplashPage> {
     await Future.delayed(const Duration(seconds: 2));
     try {
       final prefs = await SharedPreferences.getInstance();
-      String? userData = prefs.getString(Settings.dataUserLocalName);
+      final configUserLocalName = RemoteConfigCustom().getValueOrDefault(
+        key: 'dataUserLocalName',
+        defaultValue: Settings.dataUserLocalName,
+      );
+
+      String? userData = prefs.getString(configUserLocalName);
 
       if (userData != null) {
         final user = UserModel.fromJson(json.decode(userData));
@@ -38,7 +44,7 @@ class _SplashPageState extends State<SplashPage> {
       } else {
         String? deviceId = await PlatformDeviceId.getDeviceId;
         final user = UserModel(id: deviceId ?? '', phone: '', name: '');
-        await prefs.setString(Settings.dataUserLocalName, json.encode(user));
+        await prefs.setString(configUserLocalName, json.encode(user));
         Settings.user = user;
       }
       Get.offNamed('/onboarding/intro');
