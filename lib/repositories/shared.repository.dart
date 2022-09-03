@@ -13,7 +13,7 @@ class SharedRepository {
       if (user == null) {
         throw Exception('User not found');
       }
-      await RemoteConfigCustom().forceFetch();
+      // await RemoteConfigCustom().forceFetch();
       final configEncryptKey = RemoteConfigCustom().getValueOrDefault(
         key: 'encryptKey',
         defaultValue: Settings.encryptKey,

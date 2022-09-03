@@ -24,7 +24,10 @@ void main() async {
 
   await RemoteConfigCustom().initialize();
 
-  await MessagingCustom().initialize();
+  await MessagingCustom().initialize(
+    callback: () => RemoteConfigCustom().forceFetch(),
+  );
+  
   await MessagingCustom().getTokenFirebase();
 
   HttpOverrides.global = MyHttpOverrides();

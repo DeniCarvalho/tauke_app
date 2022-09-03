@@ -11,7 +11,7 @@ class MessagingCustom {
       MessagingCustom._internal(LocalNotificationCustom());
   factory MessagingCustom() => _singleton;
 
-  Future<void> initialize() async {
+  Future<void> initialize({VoidCallback? callback}) async {
     await FirebaseMessaging.instance
         .setForegroundNotificationPresentationOptions(
       badge: true,
@@ -21,6 +21,12 @@ class MessagingCustom {
     FirebaseMessaging.onMessage.listen((message) {
       RemoteNotification? notification = message.notification;
       AndroidNotification? android = message.notification?.android;
+
+      if (message.data['forceFetchRC'] != null) {
+        callback?.call();
+        return;
+      }
+
       if (notification != null && android != null) {
         _localNotification.androidNotification(notification, android);
       }

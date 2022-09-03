@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1003604283923",
+    "project_id": "taukeflow-sandbox",
+    "storage_bucket": "taukeflow-sandbox.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1003604283923:android:fde29fefbbbac82f21a5e6",
+        "android_client_info": {
+          "package_name": "com.taukeflow.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1003604283923-e3ps9582cp0aasjnc96hopbubodqpro5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCMmYspJSAGBHDftAtQnIN98km1xkTGwAo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1003604283923-e3ps9582cp0aasjnc96hopbubodqpro5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
