@@ -1,6 +1,8 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -18,23 +20,27 @@ class MyHttpOverrides extends HttpOverrides {
 }
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  runZonedGuarded(() async {
+    WidgetsFlutterBinding.ensureInitialized();
 
-  await Firebase.initializeApp();
+    await Firebase.initializeApp();
 
-  await RemoteConfigCustom().initialize();
+    await RemoteConfigCustom().initialize();
 
-  await MessagingCustom().initialize(
-    callback: () => RemoteConfigCustom().forceFetch(),
-  );
-  
-  await MessagingCustom().getTokenFirebase();
+    await MessagingCustom().initialize(
+      callback: () => RemoteConfigCustom().forceFetch(),
+    );
 
-  HttpOverrides.global = MyHttpOverrides();
-  Paint.enableDithering = true;
-  if (!kIsWeb) {
-    Intl.defaultLocale = Platform.localeName;
-    // Intl.defaultLocale = 'pt_BR';
-  }
-  await runBaseApp();
+    await MessagingCustom().getTokenFirebase();
+
+    FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
+
+    HttpOverrides.global = MyHttpOverrides();
+    Paint.enableDithering = true;
+    if (!kIsWeb) {
+      Intl.defaultLocale = Platform.localeName;
+      // Intl.defaultLocale = 'pt_BR';
+    }
+    await runBaseApp();
+  }, (error, stack) => FirebaseCrashlytics.instance.recordError);
 }
