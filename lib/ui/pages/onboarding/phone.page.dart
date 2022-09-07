@@ -5,6 +5,7 @@ import 'package:intl_phone_field/countries.dart';
 import 'package:intl_phone_field/country_picker_dialog.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:provider/provider.dart';
+import 'package:taukeflow/shared/otp/otp.bloc.dart';
 import 'package:taukeflow/ui/shared/shared.dart';
 
 import '../../../blocs/blocs.dart';
@@ -17,7 +18,7 @@ class OnboardingPhonePage extends StatefulWidget {
 }
 
 class _OnboardingPhonePageState extends State<OnboardingPhonePage> {
-  late OnboardingBloc bloc;
+  late OTPBloc bloc;
   final _controller = TextEditingController();
   String? errorMessage;
   FocusNode focusInput = FocusNode();
@@ -44,7 +45,7 @@ class _OnboardingPhonePageState extends State<OnboardingPhonePage> {
 
   @override
   Widget build(BuildContext context) {
-    bloc = Provider.of<OnboardingBloc>(context);
+    bloc = Provider.of<OTPBloc>(context);
 
     return BodyAdaptive(
       child: Column(
@@ -160,7 +161,9 @@ class _OnboardingPhonePageState extends State<OnboardingPhonePage> {
                   loading: bloc.loading,
                   onPressed: _controller.value.text.isNotEmpty &&
                           (errorMessage == null || errorMessage!.isEmpty)
-                      ? bloc.sendCode
+                      ? () {
+                          bloc.sendCode(_controller.value.text);
+                        }
                       : null,
                 ),
               ],

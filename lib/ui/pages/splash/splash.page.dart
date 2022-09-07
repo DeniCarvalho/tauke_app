@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -7,7 +5,7 @@ import 'package:platform_device_id/platform_device_id.dart';
 import 'package:provider/provider.dart';
 import 'package:rive/rive.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:taukeflow/models/user.model.dart';
+import 'package:taukeflow/shared/user/models/user.model.dart';
 import '../../../blocs/blocs.dart';
 import '../../../core/firebase/firebase.dart';
 import '../../../settings.dart';
@@ -31,6 +29,7 @@ class _SplashPageState extends State<SplashPage> {
     await Future.delayed(const Duration(seconds: 2));
     try {
       final prefs = await SharedPreferences.getInstance();
+
       final configUserLocalName = RemoteConfigCustom().getValueOrDefault(
         key: 'dataUserLocalName',
         defaultValue: Settings.dataUserLocalName,
@@ -39,12 +38,13 @@ class _SplashPageState extends State<SplashPage> {
       String? userData = prefs.getString(configUserLocalName);
 
       if (userData != null) {
-        final user = UserModel.fromJson(json.decode(userData));
+        final user = User.fromJson(userData);
         Settings.user = user;
       } else {
         String? deviceId = await PlatformDeviceId.getDeviceId;
-        final user = UserModel(id: deviceId ?? '', phone: '', name: '');
-        await prefs.setString(configUserLocalName, json.encode(user));
+        final user = User(id: deviceId ?? '', phone: '', name: '');
+        final json = user.toJson();
+        await prefs.setString(configUserLocalName, json);
         Settings.user = user;
       }
       Get.offNamed('/onboarding/intro');

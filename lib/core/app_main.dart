@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../blocs/blocs.dart';
 import '../settings.dart';
+import '../shared/otp/otp.dart';
 import 'app_widget.dart';
 import 'firebase/remote_config/remote_config_custom.dart';
 
@@ -13,7 +14,7 @@ Future<void> runBaseApp() async {
     defaultValue: Settings.themeLocalName,
   );
   String? modeSave = prefs.getString(valueThemeLocalName);
-  
+
   ThemeMode mode = modeSave == 'dark'
       ? ThemeMode.dark
       : modeSave == 'light'
@@ -25,11 +26,8 @@ Future<void> runBaseApp() async {
         ChangeNotifierProvider<ThemeBloc>.value(
           value: ThemeBloc(mode: mode),
         ),
-        ChangeNotifierProvider<SplashBloc>.value(
-          value: SplashBloc(),
-        ),
-        ChangeNotifierProvider<OnboardingBloc>.value(
-          value: OnboardingBloc(),
+        ChangeNotifierProvider<OTPBloc>.value(
+          value: OTPBloc(),
         ),
       ],
       child: const AppWidget(),
